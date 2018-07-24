@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="app_vagas.Paginas.MinhasVagasCadastradas">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Vagas" FontSize="24" />
+                <Label Text="Encontre seu emprego aqui" FontSize="12" />
+            </StackLayout>
+            <Entry Placeholder="Pesquisar" TextChanged="ActionFiltrarVagas" />
+            <Label x:Name="lblCount" FontSize="12" />
+            <ListView x:Name="lsvVagas" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <Label Text="{Binding NomeVaga}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Empresa}" />
+                                    <Label Text="{Binding Cidade}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Column="1">
+                                    <Label Text="Editar">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ActionEditar" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label Text="|" />
+                                    <Label Text="Excluir" Grid.Column="1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ActionExcluir" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
